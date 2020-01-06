@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    body{
+        height: 100vh;
+        background: linear-gradient(to right, #1a2a6c, #b21f1f, #fdbb2d); 
+    }
+    #clock{
+        width: 93%;
+        height: 93%;
+        border-width: 20px;
+        border-color:#F2D8A7;
+        border-style: solid double solid double;
+        border-radius: 50%;
+        animation-name: shadow;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        /*box-shadow:  1px 1px 50px rgb(68, 110, 89);*/
+        margin: auto;
+        position: relative;
+    }
+    @keyframes shadow{
+            0%{
+                filter: drop-shadow(0px 0px 10px #1a2a6c);
+            }
+            50%{
+                filter: drop-shadow(0px 0px 10px #b21f1f);
+            }
+            100%{
+                filter: drop-shadow(0px 0px 10px #fdbb2d);
+            }
+        }
+    #hour{
+        position:absolute;
+        width: 25%;
+        left: 25%;
+        height: 6px;
+        background-color:#1a2a6c;
+        transform-origin: right center;
+        transform: rotate(90deg);
+        top: calc(50% - 3px);
+        border-radius: 3px;
+        z-index: +2;
+    }
+    #minute{
+        position:absolute;
+        width: 45%;
+        left: 5%;
+        height: 6px;
+        background-color:#fdbb2d;
+        top: calc(50% - 3px);
+        transform: rotate(90deg);
+        transform-origin: right center;
+        border-radius: 3px;
+    }
+    #second{
+        position: absolute;
+        width: 50%;
+        height: 6px;
+        background-color:#b21f1f;
+        transform: rotate(90deg);
+        transform-origin: right center;
+        top: calc(50% - 3px);
+        border-radius: 3px;
+
+
+    }
+    </style>
+</head>
+<body>
+    <div id="clock">
+        <div id="hour"></div>
+        <div id="minute"></div>
+        <div id="second"></div>
+    </div>
+  
+    <script>
+    let hour = document.getElementById("hour");
+    let minute = document.getElementById("minute");
+    let second = document.getElementById("second");
+
+    function clock (){
+       let date = new Date() ;
+       let h = date.getHours();
+       let m = date.getMinutes();
+       let s = date.getSeconds();
+       hour.style.transform = `rotate( ${h*30+90}deg)`;
+       minute.style.transform = `rotate( ${m*6+90}deg)`;
+       second.style.transform = `rotate( ${s*6+90}deg)`;
+
+       /*let y = date.getFullYear();
+       let mon = date.getMonth();
+       let d = date.getDate();
+       time.innerText = y+"年"+mon+"月"+d+"日"+h+"點"+m+"分"+s+"秒";*/
+    }
+    clock();
+    setInterval(clock,1000); 
+     
+    </script>
+</body>
+</html>
